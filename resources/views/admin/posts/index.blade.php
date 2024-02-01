@@ -1,16 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container-fluid mt-4">
-        <div class="row justify-content-center">
-            @foreach ($posts as $post)
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">{{ $post->name }}</div>
-                        <div class="card-body">{{ $post->description }}</div>
+    <div class="content">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4 py-4">
+                @foreach ($posts as $post)
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">{{ $post->name }}</div>
+                            <div class="card-body">{{ $post->description }}</div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection
