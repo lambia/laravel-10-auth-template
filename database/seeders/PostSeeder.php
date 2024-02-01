@@ -17,6 +17,7 @@ class PostSeeder extends Seeder
             [
                 'name' => 'progetto 1',
                 'description' => 'descrizione lunga',
+                'category_id' => 3
             ],
             [
                 'name' => 'progetto 2',
