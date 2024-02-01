@@ -8,6 +8,9 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">{{ $post->name }}</div>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                {{ $post->category ? $post->category->name : 'senza categoria' }}
+                            </h6>
                             <div class="card-body">{{ $post->description }}</div>
                         </div>
                     </div>
