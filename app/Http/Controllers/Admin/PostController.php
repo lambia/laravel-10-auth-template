@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Tag;
+use App\Models\Category;
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
@@ -23,7 +25,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("admin.posts.create");
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view("admin.posts.create", compact("categories", "tags"));
     }
 
     /**
@@ -34,8 +39,14 @@ class PostController extends Controller
         $validati = $request->validated();
 
         $newPost = new Post();
+        //ricordate che per usare il fill bisogna popolare fillable nel model
+        //altrimenti alcuni dati non verranno scritti ;)
         $newPost->fill($validati);
         $newPost->save();
+
+        if ($request->tags) {
+            $newPost->tags()->attach($request->tags);
+        }
 
         // return redirect()->route("admin.posts.show", $newPost->id);
         return redirect()->route("admin.posts.index");

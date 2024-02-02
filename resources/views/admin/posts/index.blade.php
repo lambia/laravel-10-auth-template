@@ -12,6 +12,17 @@
                                 {{ $post->category ? $post->category->name : 'senza categoria' }}
                             </h6>
                             <div class="card-body">{{ $post->description }}</div>
+                            <div class="card-body">
+                                @if (count($post->tags) > 0)
+                                    <ul>
+                                        @foreach ($post->tags as $tag)
+                                            <li>{{ $tag->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <span>Non ci sono tag collegati</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 @endforeach
